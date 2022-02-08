@@ -48,6 +48,15 @@
       <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\DWSIM.Interfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Python.Deployment, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Python.Deployment.1.2.0\lib\netstandard2.0\Python.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="Python.Included, Version=3.7.3.13, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Python.Included.3.7.3.13\lib\netstandard2.0\Python.Included.dll</HintPath>
+    </Reference>
+    <Reference Include="Python.Runtime, Version=2.5.1.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\pythonnet_netstandard_py37_win.2.5.1\lib\netstandard2.0\Python.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -114,6 +123,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <EmbeddedResource Include="numpy-1.20.0-cp37-cp37m-win_amd64.whl" />
+    <None Include="packages.config" />
+    <EmbeddedResource Include="scipy-1.7.0-cp37-cp37m-win_amd64.whl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="characterization.py" />
