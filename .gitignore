@@ -1,3 +1,6 @@
 # Characterization
 .idea/
 __pycache__/
+/Characterization/obj/Debug
+/Characterization/.vs/Characterization/v16
+/.vs
