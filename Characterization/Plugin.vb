@@ -24,7 +24,7 @@
 
     Public ReadOnly Property DisplayMode() As DWSIM.Interfaces.IUtilityPlugin.DispMode Implements DWSIM.Interfaces.IUtilityPlugin.DisplayMode
         Get
-            Return DWSIM.Interfaces.IUtilityPlugin.DispMode.Dockable
+            Return DWSIM.Interfaces.IUtilityPlugin.DispMode.Modal
         End Get
     End Property
 
@@ -48,7 +48,7 @@
     'this is called by DWSIM to open the form, so we need to pass the reference to the flowsheet to the form BEFORE returning it.
     Public ReadOnly Property UtilityForm() As Object Implements DWSIM.Interfaces.IUtilityPlugin.UtilityForm
         Get
-            Return Nothing
+            Return New Form1()
         End Get
     End Property
 
