@@ -25,9 +25,9 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBoxSG = New System.Windows.Forms.TextBox()
         Me.DataGridViewTBP = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.DataGridViewTBP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -42,7 +42,7 @@ Partial Class Form1
         '
         'TextBoxSG
         '
-        Me.TextBoxSG.Location = New System.Drawing.Point(114, 11)
+        Me.TextBoxSG.Location = New System.Drawing.Point(198, 11)
         Me.TextBoxSG.Name = "TextBoxSG"
         Me.TextBoxSG.Size = New System.Drawing.Size(100, 20)
         Me.TextBoxSG.TabIndex = 1
@@ -59,16 +59,6 @@ Partial Class Form1
         Me.DataGridViewTBP.Size = New System.Drawing.Size(286, 296)
         Me.DataGridViewTBP.TabIndex = 2
         '
-        'Column1
-        '
-        Me.Column1.HeaderText = "% weight"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Temperature (C)"
-        Me.Column2.Name = "Column2"
-        '
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(12, 352)
@@ -77,6 +67,16 @@ Partial Class Form1
         Me.Button1.TabIndex = 3
         Me.Button1.Text = "Characterize"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "% Weight"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Temperature (C)"
+        Me.Column2.Name = "Column2"
         '
         'Form1
         '
@@ -87,8 +87,9 @@ Partial Class Form1
         Me.Controls.Add(Me.DataGridViewTBP)
         Me.Controls.Add(Me.TextBoxSG)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Form1"
-        Me.Text = "Characterization"
+        Me.Text = "Petroleum Characterization"
         CType(Me.DataGridViewTBP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -98,7 +99,7 @@ Partial Class Form1
     Friend WithEvents Label1 As Windows.Forms.Label
     Friend WithEvents TextBoxSG As Windows.Forms.TextBox
     Friend WithEvents DataGridViewTBP As Windows.Forms.DataGridView
+    Friend WithEvents Button1 As Windows.Forms.Button
     Friend WithEvents Column1 As Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column2 As Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Button1 As Windows.Forms.Button
 End Class
