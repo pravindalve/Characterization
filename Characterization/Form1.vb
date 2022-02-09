@@ -30,6 +30,8 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        ChangeDefaultFont()
+
         AddHandler AppDomain.CurrentDomain.AssemblyResolve, New ResolveEventHandler(AddressOf LoadFromPluginsFolder)
 
         Me.ComboBoxAF.SelectedIndex = 0
@@ -691,7 +693,7 @@ Public Class Form1
 
             Try
                 For Each compound In ccol.Values
-                    File.WriteAllText(Path.Combine(Me.FolderBrowserDialog1.SelectedPath, compound.Name, ".json"),
+                    File.WriteAllText(Path.Combine(Me.FolderBrowserDialog1.SelectedPath, compound.Name + ".json"),
                                       Newtonsoft.Json.JsonConvert.SerializeObject(compound.ConstantProperties, Newtonsoft.Json.Formatting.Indented))
                 Next
                 MessageBox.Show("Compounds exported successfully.", "Success!", MessageBoxButtons.OK)
