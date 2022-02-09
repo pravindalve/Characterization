@@ -30,7 +30,7 @@
 
     Public ReadOnly Property Name() As String Implements DWSIM.Interfaces.IUtilityPlugin.Name
         Get
-            Return "Characterization"
+            Return "Petroleum Characterization"
         End Get
     End Property
 
@@ -48,7 +48,7 @@
     'this is called by DWSIM to open the form, so we need to pass the reference to the flowsheet to the form BEFORE returning it.
     Public ReadOnly Property UtilityForm() As Object Implements DWSIM.Interfaces.IUtilityPlugin.UtilityForm
         Get
-            Return New Form1()
+            Return New Form1() With {.frm = fsheet}
         End Get
     End Property
 

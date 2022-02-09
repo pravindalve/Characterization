@@ -5,13 +5,15 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9013DADE-D074-411F-A137-33BA53A2414C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Characterization</RootNamespace>
     <AssemblyName>Characterization</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,21 +47,54 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CapeOpen">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\CapeOpen.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DWSIM">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\DWSIM.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DWSIM.Drawing.SkiaSharp">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\DWSIM.Drawing.SkiaSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DWSIM.ExtensionMethods">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\DWSIM.ExtensionMethods.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DWSIM.GlobalSettings">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\DWSIM.GlobalSettings.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DWSIM.Interfaces">
       <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\DWSIM.Interfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Python.Deployment, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Python.Deployment.1.2.0\lib\netstandard2.0\Python.Deployment.dll</HintPath>
+    <Reference Include="DWSIM.SharedClasses">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\DWSIM.SharedClasses.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Python.Included, Version=3.7.3.13, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Python.Included.3.7.3.13\lib\netstandard2.0\Python.Included.dll</HintPath>
+    <Reference Include="DWSIM.Thermodynamics">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\DWSIM.Thermodynamics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eto">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\Eto.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Python.Runtime, Version=2.5.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\pythonnet_netstandard_py37_win.2.5.1\lib\netstandard2.0\Python.Runtime.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DanWBR\dwsim\DistPackages\Windows\Python.Runtime.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -90,6 +125,12 @@
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSetupPython.Designer.vb">
+      <DependentUpon>FormSetupPython.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetupPython.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Main.vb" />
     <Compile Include="Plugin.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -113,6 +154,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSetupPython.resx">
+      <DependentUpon>FormSetupPython.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -131,7 +175,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <EmbeddedResource Include="numpy-1.20.0-cp37-cp37m-win_amd64.whl" />
-    <None Include="packages.config" />
     <EmbeddedResource Include="scipy-1.7.0-cp37-cp37m-win_amd64.whl" />
     <EmbeddedResource Include="pandas-1.3.0-cp37-cp37m-win_amd64.whl" />
     <EmbeddedResource Include="python_dateutil-2.8.2-py2.py3-none-any.whl" />
@@ -140,6 +183,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="characterization.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Python.Deployment\Python.Deployment.csproj">
+      <Project>{db8fd858-21fc-43b8-ac9b-fe7216595e88}</Project>
+      <Name>Python.Deployment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Python.Included\Python.Included.csproj">
+      <Project>{f71d2b92-c2db-4b54-8694-74e1aee53772}</Project>
+      <Name>Python.Included</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

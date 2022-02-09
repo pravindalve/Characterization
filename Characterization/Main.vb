@@ -14,7 +14,6 @@ Module Main
         Installer.InstallWheel(Reflection.Assembly.GetExecutingAssembly(), "python_dateutil-2.8.2-py2.py3-none-any.whl").GetAwaiter().GetResult()
         Installer.InstallWheel(Reflection.Assembly.GetExecutingAssembly(), "six-1.16.0-py2.py3-none-any.whl").GetAwaiter().GetResult()
         PythonEngine.Initialize()
-        Dim sys As Object = PythonEngine.ImportModule("sys")
 
         Dim charact As String
 

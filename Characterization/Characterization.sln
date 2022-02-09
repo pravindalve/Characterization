@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Characterization", "Characterization.vbproj", "{9013DADE-D074-411F-A137-33BA53A2414C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Python.Deployment", "..\Python.Deployment\Python.Deployment.csproj", "{DB8FD858-21FC-43B8-AC9B-FE7216595E88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Python.Included", "..\Python.Included\Python.Included.csproj", "{F71D2B92-C2DB-4B54-8694-74E1AEE53772}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9013DADE-D074-411F-A137-33BA53A2414C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9013DADE-D074-411F-A137-33BA53A2414C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9013DADE-D074-411F-A137-33BA53A2414C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8FD858-21FC-43B8-AC9B-FE7216595E88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8FD858-21FC-43B8-AC9B-FE7216595E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8FD858-21FC-43B8-AC9B-FE7216595E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8FD858-21FC-43B8-AC9B-FE7216595E88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F71D2B92-C2DB-4B54-8694-74E1AEE53772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71D2B92-C2DB-4B54-8694-74E1AEE53772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71D2B92-C2DB-4B54-8694-74E1AEE53772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71D2B92-C2DB-4B54-8694-74E1AEE53772}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

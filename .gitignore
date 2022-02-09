@@ -6,3 +6,7 @@ __pycache__/
 /.vs
 /Characterization/bin/Debug
 /Characterization/packages
+/Python.Included/obj
+/Python.Included/bin/Debug
+/Python.Deployment/bin/Debug
+/Python.Deployment/obj
