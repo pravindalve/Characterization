@@ -57,6 +57,8 @@ Public Class Form1
             .Item(9).HeaderText += " (" & su.cinematic_viscosity & ")"
         End With
 
+        DataGridViewTBP.Columns(1).HeaderText += " (" & su.temperature & ")"
+
         InitializePython()
 
     End Sub
@@ -254,7 +256,7 @@ Public Class Form1
                     If row.Cells(0).Value IsNot Nothing And row.Cells(0).Value IsNot Nothing Then
                         Try
                             datax.Add(row.Cells(0).Value)
-                            datay.Add(row.Cells(1).Value)
+                            datay.Add(Convert.ToDouble(row.Cells(1).Value).ConvertUnits(frm.FlowsheetOptions.SelectedUnitSystem.temperature, "C"))
                         Catch ex As Exception
                         End Try
                     End If
@@ -289,7 +291,7 @@ Public Class Form1
                     Tb.Add(Double.Parse(TbP.Item(i).ToString(), Globalization.CultureInfo.InvariantCulture))
                 Next
 
-                Characterize(Mf, MW, SG2, Tb.Select(Function(d) DWSIM.SharedClasses.SystemsOfUnits.Converter.ConvertToSI("C", d)).ToList())
+                Characterize(Mf, MW, SG2, Tb)
 
                 Me.Focus()
                 Me.BringToFront()

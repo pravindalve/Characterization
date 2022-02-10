@@ -24,7 +24,7 @@
 
     Public ReadOnly Property DisplayMode() As DWSIM.Interfaces.IUtilityPlugin.DispMode Implements DWSIM.Interfaces.IUtilityPlugin.DisplayMode
         Get
-            Return DWSIM.Interfaces.IUtilityPlugin.DispMode.Modal
+            Return DWSIM.Interfaces.IUtilityPlugin.DispMode.Normal
         End Get
     End Property
 
