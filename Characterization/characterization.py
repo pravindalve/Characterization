@@ -156,15 +156,7 @@ def characterization(SG, x_data, y_data):
 
 		MeABP = MeABP1
 		data["wt%"] = fun1(data["Tb"], fitA, fitB)
-		# Checking material balance consistency
-		data["cut wt%"] = data["wt%"].diff().fillna(data["wt%"])
-
-		SG_t = 1 / sum(data["cut wt%"] / data["SG"])
-
-		# Normalizing denisty
-
-		data["SG"] = data["SG"] * SG / SG_t
-
+		
 		data["MW"] = calc_MW(data["Tb"], data["SG"])
 
 		V = np.empty(len(data.index))
@@ -189,6 +181,12 @@ def characterization(SG, x_data, y_data):
 		MeABP1 = (MABP + CABP)/2
 		Kw = MeABP1 ** (1 / 3) / SG
 		data["SG"] = (data["Tb"])**(1/3) / Kw
+		# Checking material balance consistency
+		data["cut wt%"] = data["wt%"].diff().fillna(data["wt%"])
+		SG_t = sum(data["cut wt%"]) / sum(data["cut wt%"] / data["SG"])
+
+		# Normalizing denisty
+		data["SG"] = data["SG"] * SG / SG_t
 
 	Ti = list(data["cuts_i"])
 	Tf = list(data["cuts_f"])
@@ -203,10 +201,10 @@ def characterization(SG, x_data, y_data):
 
 # uncomment the code to see use of function
 # SG = 0.809
-#
+
 # x = [2.9, 7.68859754431644, 15.1538050381994, 31.5823352252608, 42.4062967988428, 52.8464767354692, 62.7377406502837, 71.2394217843979, 74.0267929538375, 83.4788183586731, 88.4543077863666, 92.486636460126]
 # y = [15, 65, 100, 150, 200, 250, 300, 350, 370, 450, 500, 550]
-#
+
 # ti, tf, wf, vf, mf, mw, sg, tb = characterization(SG, x, y)
 # print(ti)
 # print(tf)
