@@ -15,7 +15,7 @@ def create_cuts(IBP, FBP):
 	if FBP > 460:
 		cuts_i += list(np.linspace(s, 460, int((460 - s) / 10) + 1))
 	else:
-		cuts_i += np.linspace(s, floor(FBP / 10) * 10, int((floor(FBP / 10) * 10 - s) / 10) + 1)
+		cuts_i += list(np.linspace(s, floor(FBP / 10) * 10, int((floor(FBP / 10) * 10 - s) / 10) + 1))
 
 	if FBP > 600:
 		cuts_i += list(np.linspace(480, 600, int((600 - 480) / 20)+1))
@@ -93,7 +93,7 @@ def characterization(SG, x_data, y_data):
 		y_data[i] = (y_data[i] + 273.15)
 
 	print(y_data)
-	P = np.linspace(0, y_data[0], 100)
+	P = np.linspace(90, y_data[0], 100)
 
 	rms_error = math.inf
 	Pf = 0
