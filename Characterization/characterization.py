@@ -524,3 +524,161 @@ def characterization_wt_SG(SG, x_data, y_data, SG_data):
 # print(mw)
 # print(sg)
 # print(tb)
+
+
+def characterization_vol_SG(SG, x_data, y_data, SG_data):
+    for i in range(len(y_data)):
+        y_data[i] = (y_data[i] + 273.15)
+
+    P = np.linspace(0, y_data[0], 100)
+
+    rms_error = math.inf
+    Pf = 0
+    fitA = 0
+    fitB = 0
+    E = []
+
+    for i in range(len(P)):
+        P0 = P[i]
+
+        def fun(x, A, B):
+            y = np.empty(len(x))
+            for i in range(len(x)):
+                y[i] = P0 * (((A / B) * log(1 / (1 - x[i] / 100))) ** B + 1)
+            return y
+
+        parameters, covariance = curve_fit(fun, x_data, y_data)
+        A = parameters[0]
+        B = parameters[1]
+        error = np.empty(len(x_data))
+        for i in range(len(x_data)):
+            error[i] = abs(y_data[i] - fun([x_data[i]], A, B))[0]
+        E.append(np.sqrt(np.mean(error ** 2)))
+        if rms_error > np.sqrt(np.mean(error ** 2)):
+            Pf = P0
+            rms_error = np.sqrt(np.mean(error ** 2))
+            print("error:" + str(rms_error))
+            fitA = A
+            fitB = B
+
+    def fun1(y, A, B):
+        x = np.empty(len(y))
+        for i in range(len(y)):
+            x[i] = 1 - exp(-B / A * ((y[i] - Pf) / Pf) ** (1 / B))
+        return x
+
+    def fun2(x, A, B):
+        y = np.empty(len(x))
+        for i in range(len(x)):
+            y[i] = Pf * (((A / B) * log(1 / (1 - x[i] / 100))) ** B + 1)
+        return y
+
+    rms_error = math.inf
+    Pf_SG = 0
+    fitA_SG = 0
+    fitB_SG = 0
+    E_SG = []
+
+    P_SG = np.linspace(0, 500, 1000)
+    for i in range(len(P_SG)):
+        P0 = P_SG[i]
+
+        def fun_SG(x, A, B):
+            y = np.empty(len(x))
+            for i in range(len(x)):
+                y[i] = P0 * (((A / B) * log(1 / (1 - x[i]))) ** B + 1)
+            return y
+
+        try:
+            parameters, covariance = curve_fit(fun_SG, SG_data, y_data)
+        except RuntimeError:
+            parameters = [1, 1]
+
+        A_SG = parameters[0]
+        B_SG = parameters[1]
+        error_SG = np.empty(len(SG_data))
+        for i in range(len(SG_data)):
+            error_SG[i] = abs(y_data[i] - fun_SG([SG_data[i]], A_SG, B_SG))[0]
+        E_SG.append(np.sqrt(np.mean(error_SG ** 2)))
+        if rms_error > np.sqrt(np.mean(error_SG ** 2)):
+            Pf_SG = P0
+            rms_error = np.sqrt(np.mean(error_SG ** 2))
+            fitA_SG = A_SG
+            fitB_SG = B_SG
+
+
+    def fun1_SG(y, A, B):
+        x = np.empty(len(y))
+        for i in range(len(y)):
+            x[i] = 1 - exp(-B / A * ((y[i] - Pf_SG) / Pf_SG) ** (1 / B))
+        return x
+
+
+    def fun2_SG(x, A, B):
+        y = np.empty(len(x))
+        for i in range(len(x)):
+            y[i] = Pf_SG * (((A / B) * log(1 / (1 - x[i]))) ** B + 1)
+        return y
+
+    IBP = fun2([0], fitA, fitB)[0]
+    FBP = fun2([99.99], fitA, fitB)[0]
+
+    data = create_cuts(IBP, FBP)
+
+    data["cut T"] = data["cuts_f"] - 273.15
+    data["Tb"] = (data["cuts_i"] + data["cuts_f"]) / 2
+    data["V%"] = fun1(data["Tb"], fitA, fitB)
+
+    data["cut V%"] = data["V%"].diff().fillna(data["V%"])
+    data["SG"] = fun1_SG(data["Tb"], fitA_SG, fitB_SG)
+
+    # Normalising SG
+    SG_t = sum(data["cut V%"] * data["SG"])
+    data["SG"] = data["SG"] * SG / SG_t
+
+    data["MW"] = calc_MW(data["Tb"], data["SG"])
+
+    wt = np.empty(len(data.index))
+
+    wt[0] = data.at[0, "V%"] * data.at[0, "SG"]
+
+    wt[1:] = [(data.at[i, "V%"] - data.at[i - 1, "V%"]) * data.at[i, "SG"] for i in range(1, len(data.index))]
+
+    wt = data["V%"].diff().fillna(data["V%"]) * data["SG"]
+
+    wt = wt / sum(wt)
+    data["wt%"] = wt.cumsum()
+
+    M = data["wt%"].diff().fillna(data["wt%"]) / data["MW"]
+
+    M = M / sum(M)
+    data["M%"] = M.cumsum()
+
+    Ti = list(data["cuts_i"])
+    Tf = list(data["cuts_f"])
+    Wf = list(data["wt%"])
+    Vf = list(data["V%"])
+    Mf = list(data["M%"])
+    MW = list(data["MW"])
+    SG = list(data["SG"])
+    Tb = list(data["Tb"])
+
+    return [Ti, Tf, Wf, Vf, Mf, MW, SG, Tb]
+
+# uncomment the code to see use of function
+# SG = 0.809
+#
+# x = [9.93909281442562, 18.453005711566, 36.1053932833631, 47.1676170024157, 57.4282131693547, 66.8728669504407, 74.7821445562649, 77.327954981404, 85.7983713779294, 90.1843924629617, 93.6982246789667]
+# y = [ 65, 100, 150, 200, 250, 300, 350, 370, 450, 500, 550]
+# SG_d = [0.647455170862764, 0.706398861451607, 0.749777780304995, 0.788281101028304, 0.819733528157335,
+#            0.84372915687493, 0.865974897719598, 0.882076096202821, 0.898995318013918, 0.913907839238595,
+#            0.924511278748632]
+# ti, tf, wf, vf, mf, mw, sg, tb = characterization_vol_SG(SG, x, y, SG_d)
+# print(ti)
+# print(tf)
+# print(wf)
+# print(vf)
+# print(mf)
+# print(mw)
+# print(sg)
+# print(tb)
