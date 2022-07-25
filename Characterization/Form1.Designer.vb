@@ -65,8 +65,11 @@ Partial Class Form1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.cbInputType = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridViewTBP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -76,7 +79,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 14)
+        Me.Label1.Location = New System.Drawing.Point(12, 40)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(81, 13)
         Me.Label1.TabIndex = 0
@@ -84,7 +87,7 @@ Partial Class Form1
         '
         'TextBoxSG
         '
-        Me.TextBoxSG.Location = New System.Drawing.Point(198, 11)
+        Me.TextBoxSG.Location = New System.Drawing.Point(198, 36)
         Me.TextBoxSG.Name = "TextBoxSG"
         Me.TextBoxSG.Size = New System.Drawing.Size(100, 20)
         Me.TextBoxSG.TabIndex = 1
@@ -94,16 +97,16 @@ Partial Class Form1
         '
         Me.DataGridViewTBP.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewTBP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewTBP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.DataGridViewTBP.Location = New System.Drawing.Point(12, 40)
+        Me.DataGridViewTBP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column5})
+        Me.DataGridViewTBP.Location = New System.Drawing.Point(12, 65)
         Me.DataGridViewTBP.Name = "DataGridViewTBP"
         Me.DataGridViewTBP.RowHeadersVisible = False
-        Me.DataGridViewTBP.Size = New System.Drawing.Size(286, 191)
+        Me.DataGridViewTBP.Size = New System.Drawing.Size(286, 203)
         Me.DataGridViewTBP.TabIndex = 2
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 237)
+        Me.Button1.Location = New System.Drawing.Point(12, 274)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(286, 23)
         Me.Button1.TabIndex = 3
@@ -128,7 +131,7 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.Label28)
         Me.GroupBox4.Location = New System.Drawing.Point(305, 7)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(329, 255)
+        Me.GroupBox4.Size = New System.Drawing.Size(330, 290)
         Me.GroupBox4.TabIndex = 4
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Methods and Correlations"
@@ -270,9 +273,9 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.DataGridView2)
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 271)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 303)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(622, 248)
+        Me.GroupBox1.Size = New System.Drawing.Size(623, 315)
         Me.GroupBox1.TabIndex = 8
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Properties"
@@ -282,7 +285,7 @@ Partial Class Form1
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
         Me.Label6.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Label6.Location = New System.Drawing.Point(6, 229)
+        Me.Label6.Location = New System.Drawing.Point(6, 296)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(391, 13)
         Me.Label6.TabIndex = 10
@@ -323,7 +326,7 @@ Partial Class Form1
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersVisible = False
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(619, 206)
+        Me.DataGridView2.Size = New System.Drawing.Size(620, 273)
         Me.DataGridView2.TabIndex = 3
         '
         'DataGridViewTextBoxColumn1
@@ -404,7 +407,7 @@ Partial Class Form1
         Me.KButton3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.KButton3.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.KButton3.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.KButton3.Location = New System.Drawing.Point(329, 527)
+        Me.KButton3.Location = New System.Drawing.Point(330, 626)
         Me.KButton3.Name = "KButton3"
         Me.KButton3.Size = New System.Drawing.Size(154, 25)
         Me.KButton3.TabIndex = 18
@@ -414,9 +417,9 @@ Partial Class Form1
         '
         Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(100, 530)
+        Me.TextBox1.Location = New System.Drawing.Point(100, 629)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(222, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(223, 20)
         Me.TextBox1.TabIndex = 17
         Me.TextBox1.Text = "OIL_1"
         '
@@ -425,7 +428,7 @@ Partial Class Form1
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Label2.Location = New System.Drawing.Point(14, 533)
+        Me.Label2.Location = New System.Drawing.Point(14, 632)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(71, 13)
         Me.Label2.TabIndex = 16
@@ -436,7 +439,7 @@ Partial Class Form1
         Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button2.Location = New System.Drawing.Point(489, 527)
+        Me.Button2.Location = New System.Drawing.Point(490, 626)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(144, 25)
         Me.Button2.TabIndex = 19
@@ -445,6 +448,26 @@ Partial Class Form1
         'FolderBrowserDialog1
         '
         Me.FolderBrowserDialog1.Description = "Select a folder where to save the JSON files."
+        '
+        'cbInputType
+        '
+        Me.cbInputType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbInputType.FormattingEnabled = True
+        Me.cbInputType.Items.AddRange(New Object() {"Weight Percentages", "Volume Percentages", "Weight Percentages with SG Data", "Volume Percentages with SG Data"})
+        Me.cbInputType.Location = New System.Drawing.Point(141, 7)
+        Me.cbInputType.Name = "cbInputType"
+        Me.cbInputType.Size = New System.Drawing.Size(157, 21)
+        Me.cbInputType.TabIndex = 28
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Label3.Location = New System.Drawing.Point(12, 11)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(58, 13)
+        Me.Label3.TabIndex = 27
+        Me.Label3.Text = "Input Type"
         '
         'Column1
         '
@@ -460,11 +483,19 @@ Partial Class Form1
         Me.Column2.HeaderText = "Temperature"
         Me.Column2.Name = "Column2"
         '
+        'Column5
+        '
+        Me.Column5.HeaderText = "SG"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Visible = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(645, 564)
+        Me.ClientSize = New System.Drawing.Size(646, 663)
+        Me.Controls.Add(Me.cbInputType)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.KButton3)
         Me.Controls.Add(Me.TextBox1)
@@ -529,6 +560,9 @@ Partial Class Form1
     Public WithEvents Label2 As Windows.Forms.Label
     Public WithEvents Button2 As Windows.Forms.Button
     Friend WithEvents FolderBrowserDialog1 As Windows.Forms.FolderBrowserDialog
+    Public WithEvents cbInputType As Windows.Forms.ComboBox
+    Public WithEvents Label3 As Windows.Forms.Label
     Friend WithEvents Column1 As Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column2 As Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As Windows.Forms.DataGridViewTextBoxColumn
 End Class

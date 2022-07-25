@@ -11,3 +11,5 @@ __pycache__/
 /Python.Deployment/bin/Debug
 /Python.Deployment/obj
 /Characterization/.vs/Characterization/DesignTimeBuild
+/Characterization/obj/Release
+/Characterization/.vs/Characterization/v17

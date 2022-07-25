@@ -34,6 +34,8 @@ Public Class Form1
 
         AddHandler AppDomain.CurrentDomain.AssemblyResolve, New ResolveEventHandler(AddressOf LoadFromPluginsFolder)
 
+        cbInputType.SelectedIndex = 0
+
         Me.ComboBoxAF.SelectedIndex = 0
         Me.ComboBoxMW.SelectedIndex = 0
         Me.ComboBoxSG.SelectedIndex = 0
@@ -250,7 +252,7 @@ Public Class Form1
 
                 Dim SG = TextBoxSG.Text.ToDoubleFromCurrent()
 
-                Dim datax, datay As New List(Of Double)
+                Dim datax, datay, datay2 As New List(Of Double)
 
                 For Each row As DataGridViewRow In DataGridViewTBP.Rows
                     If row.Cells(0).Value IsNot Nothing And row.Cells(0).Value IsNot Nothing Then
@@ -262,10 +264,34 @@ Public Class Form1
                     End If
                 Next
 
+                If cbInputType.SelectedIndex > 1 Then
+                    For Each row As DataGridViewRow In DataGridViewTBP.Rows
+                        If row.Cells(0).Value IsNot Nothing And row.Cells(0).Value IsNot Nothing Then
+                            Try
+                                datay2.Add(Convert.ToDouble(row.Cells(2).Value))
+                            Catch ex As Exception
+                            End Try
+                        End If
+                    Next
+                End If
+
                 Dim x = np.array(datax)
                 Dim y = np.array(datay)
 
-                Dim result As Object = charac1(SG, x, y)
+                Dim result As Object = Nothing
+
+                Select Case cbInputType.SelectedIndex
+                    Case 0
+                        result = charac1.characterization_wt(SG, x, y)
+                    Case 1
+                        result = charac1.characterization_vol(SG, x, y)
+                    Case 2
+                        Dim y2 = np.array(datay2)
+                        result = charac1.characterization_wt_SG(SG, x, y)
+                    Case 3
+                        Dim y2 = np.array(datay2)
+                        result = charac1.characterization_vol_SG(SG, x, y)
+                End Select
 
                 'return [Ti, Tf, Wf, Vf, Mf, MW, SG, Tb]
 
@@ -704,6 +730,17 @@ Public Class Form1
             End Try
 
         End If
+
+    End Sub
+
+    Private Sub cbInputType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbInputType.SelectedIndexChanged
+
+        Select Case cbInputType.SelectedIndex
+            Case 0, 1
+                DataGridViewTBP.Columns(2).Visible = False
+            Case 2, 3
+                DataGridViewTBP.Columns(2).Visible = True
+        End Select
 
     End Sub
 
