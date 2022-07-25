@@ -230,8 +230,18 @@ Public Class Form1
 
     End Sub
 
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Try
+            Charac()
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+
+    Private Sub Charac()
 
         Dim charact As String
 
@@ -260,8 +270,8 @@ Public Class Form1
                 For Each row As DataGridViewRow In DataGridViewTBP.Rows
                     If row.Cells(0).Value IsNot Nothing And row.Cells(0).Value IsNot Nothing Then
                         Try
-                            datax.Add(row.Cells(0).Value)
-                            datay.Add(Convert.ToDouble(row.Cells(1).Value).ConvertUnits(frm.FlowsheetOptions.SelectedUnitSystem.temperature, "C"))
+                            If row.Cells(0).Value.ToString() <> "" Then datax.Add(row.Cells(0).Value)
+                            If row.Cells(1).Value.ToString() <> "" Then datay.Add(Convert.ToDouble(row.Cells(1).Value).ConvertUnits(frm.FlowsheetOptions.SelectedUnitSystem.temperature, "C"))
                         Catch ex As Exception
                         End Try
                     End If
@@ -269,9 +279,9 @@ Public Class Form1
 
                 If cbInputType.SelectedIndex > 1 Then
                     For Each row As DataGridViewRow In DataGridViewTBP.Rows
-                        If row.Cells(0).Value IsNot Nothing And row.Cells(0).Value IsNot Nothing Then
+                        If row.Cells(2).Value IsNot Nothing And row.Cells(2).Value IsNot Nothing Then
                             Try
-                                datay2.Add(Convert.ToDouble(row.Cells(2).Value))
+                                If row.Cells(2).Value.ToString() <> "" Then datay2.Add(Convert.ToDouble(row.Cells(2).Value))
                             Catch ex As Exception
                             End Try
                         End If
@@ -290,10 +300,10 @@ Public Class Form1
                         result = characterization_vol(SG, x, y)
                     Case 2
                         Dim y2 = np.array(datay2)
-                        result = characterization_wt_SG(SG, x, y)
+                        result = characterization_wt_SG(SG, x, y, y2)
                     Case 3
                         Dim y2 = np.array(datay2)
-                        result = characterization_vol_SG(SG, x, y)
+                        result = characterization_vol_SG(SG, x, y, y2)
                 End Select
 
                 'return [Ti, Tf, Wf, Vf, Mf, MW, SG, Tb]
