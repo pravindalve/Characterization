@@ -452,6 +452,7 @@ Partial Class Form1
         'cbInputType
         '
         Me.cbInputType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbInputType.DropDownWidth = 200
         Me.cbInputType.FormattingEnabled = True
         Me.cbInputType.Items.AddRange(New Object() {"Weight Percentages", "Volume Percentages", "Weight Percentages with SG Data", "Volume Percentages with SG Data"})
         Me.cbInputType.Location = New System.Drawing.Point(141, 7)

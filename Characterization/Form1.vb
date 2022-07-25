@@ -248,7 +248,10 @@ Public Class Form1
                 scope.Exec(charact)
 
                 Dim np As Object = Py.Import("numpy")
-                Dim charac1 As Object = scope.Get("characterization")
+                Dim characterization_wt As Object = scope.Get("characterization_wt")
+                Dim characterization_vol As Object = scope.Get("characterization_vol")
+                Dim characterization_wt_SG As Object = scope.Get("characterization_wt_SG")
+                Dim characterization_vol_SG As Object = scope.Get("characterization_vol_SG")
 
                 Dim SG = TextBoxSG.Text.ToDoubleFromCurrent()
 
@@ -282,15 +285,15 @@ Public Class Form1
 
                 Select Case cbInputType.SelectedIndex
                     Case 0
-                        result = charac1.characterization_wt(SG, x, y)
+                        result = characterization_wt(SG, x, y)
                     Case 1
-                        result = charac1.characterization_vol(SG, x, y)
+                        result = characterization_vol(SG, x, y)
                     Case 2
                         Dim y2 = np.array(datay2)
-                        result = charac1.characterization_wt_SG(SG, x, y)
+                        result = characterization_wt_SG(SG, x, y)
                     Case 3
                         Dim y2 = np.array(datay2)
-                        result = charac1.characterization_vol_SG(SG, x, y)
+                        result = characterization_vol_SG(SG, x, y)
                 End Select
 
                 'return [Ti, Tf, Wf, Vf, Mf, MW, SG, Tb]
