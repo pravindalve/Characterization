@@ -505,11 +505,6 @@ Public Class Form1
 
         If frm.Options.PropertyPackages.Count > 0 Then
             pp = frm.Options.SelectedPropertyPackage
-            If TypeOf pp Is DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage Then
-                DirectCast(pp, DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage).m_pr.BIPChanged = True
-            ElseIf TypeOf pp Is DWSIM.Thermodynamics.PropertyPackages.SRKPropertyPackage Then
-                DirectCast(pp, DWSIM.Thermodynamics.PropertyPackages.SRKPropertyPackage).m_pr.BIPChanged = True
-            End If
         Else
             pp = New DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage()
         End If
@@ -624,11 +619,6 @@ Public Class Form1
         ms.SetFlowsheet(frm)
         If frm.Options.PropertyPackages.Count > 0 Then
             ms.PropertyPackage = frm.Options.SelectedPropertyPackage
-            If TypeOf ms.PropertyPackage Is DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage Then
-                DirectCast(ms.PropertyPackage, DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage).m_pr.BIPChanged = True
-            ElseIf TypeOf ms.PropertyPackage Is DWSIM.Thermodynamics.PropertyPackages.SRKPropertyPackage Then
-                DirectCast(ms.PropertyPackage, DWSIM.Thermodynamics.PropertyPackages.SRKPropertyPackage).m_pr.BIPChanged = True
-            End If
         Else
             ms.PropertyPackage = New DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage()
         End If
